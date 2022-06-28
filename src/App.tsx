@@ -1,13 +1,9 @@
 import L from "leaflet";
-import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "../src/App.css";
-import ILocation from "./data/skateboardInterface";
 import parkData from "./data/skateboards-parks";
 
 const App = () => {
-  const [activePark, setActivePark] = useState<ILocation | any>(null);
-
   const customIcon = L.Icon.extend({
     options: {
       iconSize: [35, 35],
@@ -29,32 +25,22 @@ const App = () => {
             park.geometry.coordinates[0],
             park.geometry.coordinates[1],
           ]}
-          eventHandlers={{
-            click: () => {
-              setActivePark(park);
-            },
-          }}
           icon={new customIcon()}
-        />
-      ))}
-      {activePark && (
-        <Popup
-          position={[
-            activePark.geometry.coordinates[0],
-            activePark.geometry.coordinates[1],
-          ]}
-          eventHandlers={{
-            click: () => {
-              setActivePark(null);
-            },
-          }}
         >
-          <div>
-            <h2>{activePark.properties.NAME}</h2>
-            <p>{activePark.properties.DESCRIPTIO}</p>
-          </div>
-        </Popup>
-      )}
+          {" "}
+          <Popup
+            position={[
+              park.geometry.coordinates[0],
+              park.geometry.coordinates[1],
+            ]}
+          >
+            <div>
+              <h2>{park.properties.NAME}</h2>
+              <p>{park.properties.DESCRIPTIO}</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
