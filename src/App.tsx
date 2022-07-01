@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import WelcomePage from "./pages/Welcome";
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/welcome" />} />
