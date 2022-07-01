@@ -72,8 +72,8 @@ describe("Given the registerUserThunk", () => {
         surname: "testsurnam",
         email: "test@supertest.com",
         password: "1234",
-        city: "testcity",
-        country: "+11111111111",
+        city: "Barcelona",
+        country: "Spain",
       });
       await thunk(dispatch);
 
