@@ -20,13 +20,29 @@ describe("Given the loginUserThunk", () => {
   };
 
   describe("When invoked", () => {
-    test("Then the dispatch function will be called", async () => {
+    test("Then the dispatch function will be called with the type 'ui/loading', 'user/login' and 'ui/finishedLoading'", async () => {
+      const expectedFirstActionType = {
+        payload: undefined,
+        type: "ui/loading",
+      };
+
+      const expectedSecondActionType = {
+        payload: undefined,
+        type: "user/login",
+      };
+
+      const expectedThirdActionType = {
+        payload: undefined,
+        type: "ui/finishedLoading",
+      };
       const dispatch = jest.fn();
 
       const thunk = loginUserThunk(userTest);
       await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith(expectedFirstActionType);
+      expect(dispatch).toHaveBeenCalledWith(expectedSecondActionType);
+      expect(dispatch).toHaveBeenCalledWith(expectedThirdActionType);
     });
   });
 });
