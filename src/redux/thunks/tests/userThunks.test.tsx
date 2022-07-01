@@ -49,8 +49,24 @@ describe("Given the loginUserThunk", () => {
 
 describe("Given the registerUserThunk", () => {
   describe("When RegisterUserThunk is invoked", () => {
-    test("Then the dispatch function will be called", async () => {
+    test("Then the dispatch function will be called with the type 'ui/loading', the 'ui/apiResponse' and the token as a payload, and the 'ui/finishedLoading'", async () => {
+      const expectedFirstActionType = {
+        payload: undefined,
+        type: "ui/loading",
+      };
+
+      const expectedSecondActionType = {
+        payload: "tok",
+        type: "ui/apiResponse",
+      };
+
+      const expectedThirdActionType = {
+        payload: undefined,
+        type: "ui/finishedLoading",
+      };
+
       const dispatch = jest.fn();
+
       const thunk = registerUserThunk({
         firstname: "testName",
         surname: "testsurnam",
@@ -61,7 +77,9 @@ describe("Given the registerUserThunk", () => {
       });
       await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith(expectedFirstActionType);
+      expect(dispatch).toHaveBeenCalledWith(expectedSecondActionType);
+      expect(dispatch).toHaveBeenCalledWith(expectedThirdActionType);
     });
   });
 });
