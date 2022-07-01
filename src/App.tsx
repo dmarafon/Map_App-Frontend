@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import WelcomePage from "./pages/Welcome";
+import WelcomePage from "./pages/WelcomePage";
 
 const App = (): JSX.Element => {
   return (
