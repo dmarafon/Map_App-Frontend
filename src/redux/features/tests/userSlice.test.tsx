@@ -35,7 +35,7 @@ describe("Given a userSlice reducer with a loginActionCreator function", () => {
         id: "1234",
         firstName: "Julio",
         email: "test@test.com",
-         city: "Barcelona",
+        city: "Barcelona",
         country: "Spain",
         logged: true,
       };
