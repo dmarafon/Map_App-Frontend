@@ -4,7 +4,10 @@ import {
   errorLoginValidation,
   errorRegistrationValidation,
 } from "../../components/utils/errorValidation";
-import { LoginInformation } from "../../types/userInterface";
+import {
+  LoginInformation,
+  RegisterInformation,
+} from "../../types/userInterface";
 import {
   apiResponseActionCreator,
   finishedLoadingActionCreator,
@@ -37,16 +40,16 @@ export const loginUserThunk =
   };
 
 export const registerUserThunk =
-  (formData: any) => async (dispatch: AppDispatch) => {
+  (registerInformation: RegisterInformation) =>
+  async (dispatch: AppDispatch) => {
+    const route = `${process.env.REACT_APP_API_URL}users/register`;
     try {
       dispatch(loadingActionCreator());
-      await axios
-        .post(`${process.env.REACT_APP_API_URL}users/register`, formData)
-        .then((response) => {
-          const apiResponse = response.request.response.substring(2, 5);
+      await axios.post(route, registerInformation).then((response) => {
+        const apiResponse = response.request.response.substring(2, 5);
 
-          dispatch(apiResponseActionCreator(apiResponse.toString()));
-        });
+        dispatch(apiResponseActionCreator(apiResponse.toString()));
+      });
 
       dispatch(finishedLoadingActionCreator());
     } catch (error: any) {
