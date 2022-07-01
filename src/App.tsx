@@ -1,6 +1,7 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "../src/App.css";
+import MarkedIcon from "./components/MarkedIcon";
 import parkData from "./data/skateboards-parks";
 
 const App = () => {
@@ -41,10 +42,12 @@ const App = () => {
           </Popup>
         </Marker>
       ))}
+
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
+      <MarkedIcon />
     </MapContainer>
   );
 };
