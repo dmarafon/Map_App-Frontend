@@ -35,11 +35,10 @@ const RegisterLoginForm = (): JSX.Element => {
             <input
               id="email"
               value={formData.email}
-              type="email"
+              type="text"
               onChange={changeData}
               required
               placeholder="EMAIL"
-              maxLength={33}
               className="login__input--email"
             />
             <label className="login__label--email" htmlFor="email">
@@ -53,8 +52,6 @@ const RegisterLoginForm = (): JSX.Element => {
               onChange={changeData}
               required
               placeholder="PASSWORD"
-              minLength={5}
-              maxLength={15}
               className="login__input--password"
             />
             <label className="login__label--password" htmlFor="password">

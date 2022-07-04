@@ -10,6 +10,20 @@ const RegisterLoginFormStyled = styled.div`
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
+
+    display: inline-block;
+    animation: move-left 1.5s forwards;
+  }
+
+  @keyframes move-left {
+    0% {
+      opacity: 0;
+      transform: translateX(5vw);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .login__title {
@@ -54,14 +68,14 @@ const RegisterLoginFormStyled = styled.div`
 
   .login__input--password:focus ~ .login__label--password,
   .login__input--password:not(:focus):valid ~ .login__label--password {
-    top: -70px;
+    top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .login__input--email:focus ~ .login__label--email,
   .login__input--email:not(:focus):valid ~ .login__label--email {
-    top: -70px;
+    top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
@@ -71,8 +85,6 @@ const RegisterLoginFormStyled = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    padding-bottom: 20px;
-    margin-bottom: 20px;
     width: 240px;
 
     color: rgba(252, 124, 69, 1);
