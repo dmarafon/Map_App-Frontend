@@ -57,9 +57,11 @@ const RegisterLoginForm = (): JSX.Element => {
               className="register_login__input"
             />
           </div>
-          <button className="login__button" type="submit" disabled={false}>
-            LOGIN
-          </button>
+          <div className="login__button--container">
+            <button className="login__button" type="submit" disabled={false}>
+              LOGIN
+            </button>
+          </div>
         </form>
       </div>
     </RegisterLoginFormStyled>
