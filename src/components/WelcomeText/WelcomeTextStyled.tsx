@@ -25,6 +25,12 @@ const WelcomeTextStyled = styled.div`
 
   .welcome__paragraph--container {
     margin-top: 50px;
+
+    @media (max-width: 1022px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .welcome__paragraph--regular_text_first {
