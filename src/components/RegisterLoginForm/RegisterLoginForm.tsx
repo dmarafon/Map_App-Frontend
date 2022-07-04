@@ -71,7 +71,7 @@ const RegisterLoginForm = (): JSX.Element => {
   return (
     <RegisterLoginFormStyled>
       {openingForm === "loginForm" ? (
-        <div className="register_login__form--container">
+        <div className="login__form--container">
           <form onSubmit={submitForm} noValidate autoComplete="off">
             <h2 className="login__title">SIGN IN</h2>
             <div className="login__input--container">
@@ -119,7 +119,7 @@ const RegisterLoginForm = (): JSX.Element => {
           </form>
         </div>
       ) : (
-        <div className="register_login__form--container">
+        <div className="register__form--container">
           <form onSubmit={submitForm} noValidate autoComplete="off">
             <h2 className="register__title">Sign Up</h2>
             <div className="register__input--container">

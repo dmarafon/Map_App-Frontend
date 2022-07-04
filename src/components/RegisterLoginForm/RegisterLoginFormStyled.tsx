@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const RegisterLoginFormStyled = styled.div`
-  .register_login__form--container {
+  .login__form--container {
     width: 350px;
     padding: 40px;
     margin-top: 120px;
@@ -12,6 +12,37 @@ const RegisterLoginFormStyled = styled.div`
     border-radius: 10px;
 
     display: inline-block;
+    animation: move-left 1.5s forwards;
+  }
+
+  @keyframes move-left {
+    0% {
+      opacity: 0;
+      transform: translateX(5vw);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .register__form--container {
+    width: 420px;
+    padding: 40px;
+    margin-top: 120px;
+    @media (max-width: 1022px) {
+      width: 350px;
+      display: inline-block;
+    }
+
+    background: rgba(255, 255, 255, 0.753);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    gap: 100px;
     animation: move-left 1.5s forwards;
   }
 
@@ -228,14 +259,14 @@ const RegisterLoginFormStyled = styled.div`
   .register__input--container {
     display: flex;
     flex-direction: row;
-    column-gap: 30px;
+    column-gap: 50px;
     align-items: flex-start;
     @media (max-width: 1022px) {
       flex-direction: column;
       align-items: center;
     }
 
-    width: 240px;
+    width: 350px;
 
     color: rgba(252, 124, 69, 1);
   }
