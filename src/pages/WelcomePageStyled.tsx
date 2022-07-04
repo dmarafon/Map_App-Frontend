@@ -3,16 +3,8 @@ import styled from "styled-components";
 const WelcomePageStyled = styled.div`
   .welcome__container {
     display: flex;
-    column-gap: 40vw;
+    column-gap: 35vw;
     align-items: center;
-
-    @media (min-width: 1500px) and (max-width: 1580px) {
-      column-gap: 37vw;
-    }
-
-    @media (min-width: 1475px) and (max-width: 1499px) {
-      column-gap: 35vw;
-    }
 
     @media (min-width: 1380px) and (max-width: 1474px) {
       column-gap: 32vw;

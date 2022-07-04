@@ -31,8 +31,7 @@ const RegisterLoginForm = (): JSX.Element => {
       <div className="register_login__form--container">
         <form onSubmit={submitLogin} noValidate autoComplete="off">
           <h2 className="login__title">SIGN IN</h2>
-          <div className="login__input">
-            <label htmlFor="email" />
+          <div className="login__input--container">
             <input
               id="email"
               value={formData.email}
@@ -41,9 +40,11 @@ const RegisterLoginForm = (): JSX.Element => {
               required
               placeholder="EMAIL"
               maxLength={33}
-              className="register_login__input"
+              className="login__input--email"
             />
-            <label htmlFor="password" />
+            <label className="login__label--email" htmlFor="email">
+              EMAIL
+            </label>
             <input
               autoComplete="current-password"
               id="password"
@@ -54,8 +55,11 @@ const RegisterLoginForm = (): JSX.Element => {
               placeholder="PASSWORD"
               minLength={5}
               maxLength={15}
-              className="register_login__input"
+              className="login__input--password"
             />
+            <label className="login__label--password" htmlFor="password">
+              PASSWORD
+            </label>
           </div>
           <div className="login__button--container">
             <button className="login__button" type="submit" disabled={false}>

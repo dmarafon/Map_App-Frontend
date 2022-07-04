@@ -27,7 +27,45 @@ const RegisterLoginFormStyled = styled.div`
     text-underline-offset: 13px;
   }
 
-  .login__input {
+  .login__label--password {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .login__label--email {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .login__input--password:focus ~ .login__label--password,
+  .login__input--password:not(:focus):valid ~ .login__label--password {
+    top: -70px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .login__input--email:focus ~ .login__label--email,
+  .login__input--email:not(:focus):valid ~ .login__label--email {
+    top: -70px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .login__input--container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -39,20 +77,63 @@ const RegisterLoginFormStyled = styled.div`
     color: rgba(252, 124, 69, 1);
   }
 
-  input::-webkit-input-placeholder {
-    color: #fd1d89;
-  }
-  input:-ms-input-placeholder {
-    color: #fd1d89;
+  .login__input--email:focus {
+    outline: none;
   }
 
-  input::placeholder {
+  .login__input--password:focus {
+    outline: none;
+  }
+
+  .login__input--email::-webkit-input-placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+  .login__input--email:-ms-input-placeholder {
     color: #fd1d89;
     font-family: "IBM Plex Sans";
     font-size: 15px;
   }
 
-  .register_login__input {
+  .login__input--email::placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .login__input--email {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .login__input--password::-webkit-input-placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+  .login__input--password:-ms-input-placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .login__input--password::placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .login__input--password {
     width: 100%;
     padding: 10px 0;
     margin-bottom: 30px;
@@ -103,16 +184,15 @@ const RegisterLoginFormStyled = styled.div`
 
     cursor: pointer;
   }
-  .login__button:active,
-  .login__button:focus {
-    background-color: rgba(252, 124, 69, 1);
-    color: #ffeba7;
-    box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
-  }
+
   .login__button:hover {
     background-color: rgba(252, 124, 69, 1);
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .login__button:active {
+    opacity: 0.4;
   }
 
   .login__text--container {
