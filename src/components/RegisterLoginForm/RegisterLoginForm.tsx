@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { loginUserThunk } from "../../redux/thunks/userThunks";
 import { useAppDispatch } from "../hooks";
+import RegisterLoginFormStyled from "./RegisterLoginFormStyled";
 
 const RegisterLoginForm = (): JSX.Element => {
   const formInitialState = { email: "", password: "" };
@@ -26,33 +27,42 @@ const RegisterLoginForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={submitLogin} noValidate autoComplete="off">
-      <label htmlFor="email">EMAIL</label>
-      <input
-        id="email"
-        value={formData.email}
-        type="email"
-        onChange={changeData}
-        required
-        placeholder="YOUR EMAIL"
-        maxLength={33}
-      />
-      <label htmlFor="password">PASSWORD</label>
-      <input
-        autoComplete="current-password"
-        id="password"
-        type="password"
-        value={formData.password}
-        onChange={changeData}
-        required
-        placeholder="YOUR PASSWORD"
-        minLength={5}
-        maxLength={15}
-      />
-      <button type="submit" disabled={false}>
-        LOGIN
-      </button>
-    </form>
+    <RegisterLoginFormStyled>
+      <div className="register_login__form--container">
+        <form onSubmit={submitLogin} noValidate autoComplete="off">
+          <h2 className="login__title">SIGN IN</h2>
+          <div className="login__input">
+            <label htmlFor="email" />
+            <input
+              id="email"
+              value={formData.email}
+              type="email"
+              onChange={changeData}
+              required
+              placeholder="EMAIL"
+              maxLength={33}
+              className="register_login__input"
+            />
+            <label htmlFor="password" />
+            <input
+              autoComplete="current-password"
+              id="password"
+              type="password"
+              value={formData.password}
+              onChange={changeData}
+              required
+              placeholder="PASSWORD"
+              minLength={5}
+              maxLength={15}
+              className="register_login__input"
+            />
+          </div>
+          <button className="login__button" type="submit" disabled={false}>
+            LOGIN
+          </button>
+        </form>
+      </div>
+    </RegisterLoginFormStyled>
   );
 };
 
