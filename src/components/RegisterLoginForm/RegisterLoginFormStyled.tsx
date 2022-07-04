@@ -41,6 +41,21 @@ const RegisterLoginFormStyled = styled.div`
     text-underline-offset: 13px;
   }
 
+  .register__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: "Cairo", sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+
+    color: rgba(252, 124, 69, 1);
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 13px;
+  }
+
   .login__label--password {
     color: #fd1d89;
     font-family: "IBM Plex Sans";
@@ -54,6 +69,84 @@ const RegisterLoginFormStyled = styled.div`
   }
 
   .login__label--email {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--firstname {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--surname {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--email {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--password {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--city {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+
+    transition: all 200ms ease-in-out;
+
+    position: relative;
+    pointer-events: none;
+    top: -60px;
+    transition: 0.2s ease all;
+  }
+
+  .register__label--country {
     color: #fd1d89;
     font-family: "IBM Plex Sans";
     font-size: 15px;
@@ -80,7 +173,59 @@ const RegisterLoginFormStyled = styled.div`
     font-size: 10px;
   }
 
+  .register__input--firstname:focus ~ .register__label--firstname,
+  .register--firstname:not(:focus):valid ~ .register__label--firstname {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .register__input--surname:focus ~ .register__label--surname,
+  .register--surname:not(:focus):valid ~ .register__label--surname {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .register__input--email:focus ~ .register__label--email,
+  .register--email:not(:focus):valid ~ .register__label--email {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .register__input--password:focus ~ .register__label--password,
+  .register--password:not(:focus):valid ~ .register__label--password {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .register__input--city:focus ~ .register__label--city,
+  .register--city:not(:focus):valid ~ .register__label--city {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .register__input--country:focus ~ .register__label--country,
+  .register--country:not(:focus):valid ~ .register__label--country {
+    top: -80px;
+    padding-bottom: 3px;
+    font-size: 10px;
+  }
+
   .login__input--container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 240px;
+
+    color: rgba(252, 124, 69, 1);
+  }
+
+  .register__input--container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -96,6 +241,36 @@ const RegisterLoginFormStyled = styled.div`
   }
 
   .login__input--password:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--firstname:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--surname:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--email:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--password:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--city:focus {
+    outline: none;
+    border-bottom: 1px solid #fd1d89;
+  }
+
+  .register__input--country:focus {
     outline: none;
     border-bottom: 1px solid #fd1d89;
   }
@@ -118,6 +293,212 @@ const RegisterLoginFormStyled = styled.div`
   }
 
   .login__input--email {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--firstname {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--firstname::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--firstname::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--firstname::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--surname {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--surname::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--surname::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--surname::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--email {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--email::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--email::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--email::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--password {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--password::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--password::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--password::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--city {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--city::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--city::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--city::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--city {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+
+    font-size: 16px;
+    color: #fd1d89;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .register__input--country::-webkit-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--country::-ms-input-placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--country::placeholder {
+    color: transparent;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
+  .register__input--country {
     width: 100%;
     padding: 10px 0;
     margin-bottom: 30px;
