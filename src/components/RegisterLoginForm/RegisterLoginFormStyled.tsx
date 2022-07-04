@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const RegisterLoginFormStyled = styled.div`
   .register_login__form--container {
-    width: 320px;
+    width: 350px;
     padding: 40px;
     margin-top: 120px;
 
@@ -23,6 +23,8 @@ const RegisterLoginFormStyled = styled.div`
 
     color: rgba(252, 124, 69, 1);
     text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 13px;
   }
 
   .login__input {
@@ -37,13 +39,26 @@ const RegisterLoginFormStyled = styled.div`
     color: rgba(252, 124, 69, 1);
   }
 
+  input::-webkit-input-placeholder {
+    color: #fd1d89;
+  }
+  input:-ms-input-placeholder {
+    color: #fd1d89;
+  }
+
+  input::placeholder {
+    color: #fd1d89;
+    font-family: "IBM Plex Sans";
+    font-size: 15px;
+  }
+
   .register_login__input {
     width: 100%;
     padding: 10px 0;
     margin-bottom: 30px;
 
     font-size: 16px;
-    color: #000;
+    color: #fd1d89;
 
     border: none;
     border-bottom: 1px solid #fff;
@@ -62,6 +77,7 @@ const RegisterLoginFormStyled = styled.div`
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
+
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
     padding: 0 30px;
@@ -79,10 +95,13 @@ const RegisterLoginFormStyled = styled.div`
     justify-content: center;
     -ms-flex-pack: center;
     text-align: center;
+
     border: none;
     background-color: #ffeba7;
     color: #000000;
     box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+
+    cursor: pointer;
   }
   .login__button:active,
   .login__button:focus {
@@ -94,6 +113,33 @@ const RegisterLoginFormStyled = styled.div`
     background-color: rgba(252, 124, 69, 1);
     color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .login__text--container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .login__text--register_access_first {
+    font-family: "Cairo", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(252, 124, 69, 1);
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+
+  .login__text--register_access_second {
+    font-family: "Cairo", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(252, 124, 69, 1);
+  }
+
+  .login__text--special_color {
+    color: #fd1d89;
   }
 `;
 

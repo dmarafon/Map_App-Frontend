@@ -62,6 +62,16 @@ const RegisterLoginForm = (): JSX.Element => {
               LOGIN
             </button>
           </div>
+          <div className="login__text--container">
+            <p className="login__text--register_access_first">
+              Don't have an Account?
+            </p>
+            <p className="login__text--register_access_second">
+              Click here to{" "}
+              <span className="login__text--special_color">sign up</span> right
+              now
+            </p>
+          </div>
         </form>
       </div>
     </RegisterLoginFormStyled>

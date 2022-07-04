@@ -16,7 +16,7 @@ const WelcomeTextStyled = styled.div`
   }
 
   .welcome__image--logo {
-    margin-top: 75px;
+    margin-top: 40px;
     margin-left: -20px;
     @media (max-width: 590px) {
       max-height: 125px;
