@@ -174,42 +174,42 @@ const RegisterLoginFormStyled = styled.div`
   }
 
   .register__input--firstname:focus ~ .register__label--firstname,
-  .register--firstname:not(:focus):valid ~ .register__label--firstname {
+  .register__input--firstname:not(:focus):valid ~ .register__label--firstname {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .register__input--surname:focus ~ .register__label--surname,
-  .register--surname:not(:focus):valid ~ .register__label--surname {
+  .register__input--surname:not(:focus):valid ~ .register__label--surname {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .register__input--email:focus ~ .register__label--email,
-  .register--email:not(:focus):valid ~ .register__label--email {
+  .register__input--email:not(:focus):valid ~ .register__label--email {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .register__input--password:focus ~ .register__label--password,
-  .register--password:not(:focus):valid ~ .register__label--password {
+  .register__input--password:not(:focus):valid ~ .register__label--password {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .register__input--city:focus ~ .register__label--city,
-  .register--city:not(:focus):valid ~ .register__label--city {
+  .register__input--city:not(:focus):valid ~ .register__label--city {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
   }
 
   .register__input--country:focus ~ .register__label--country,
-  .register--country:not(:focus):valid ~ .register__label--country {
+  .register__input--country:not(:focus):valid ~ .register__label--country {
     top: -80px;
     padding-bottom: 3px;
     font-size: 10px;
@@ -227,8 +227,13 @@ const RegisterLoginFormStyled = styled.div`
 
   .register__input--container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    column-gap: 30px;
     align-items: flex-start;
+    @media (max-width: 1022px) {
+      flex-direction: column;
+      align-items: center;
+    }
 
     width: 240px;
 

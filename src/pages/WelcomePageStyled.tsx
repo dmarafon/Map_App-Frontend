@@ -4,7 +4,7 @@ const WelcomePageStyled = styled.div`
   .welcome__container {
     display: flex;
     column-gap: 35vw;
-    align-items: center;
+    align-items: flex-start;
 
     @media (min-width: 1380px) and (max-width: 1474px) {
       column-gap: 32vw;
@@ -47,6 +47,7 @@ const WelcomePageStyled = styled.div`
 
     @media (max-width: 1022px) {
       flex-direction: column;
+      align-items: center;
     }
     padding-bottom: 200px;
 
