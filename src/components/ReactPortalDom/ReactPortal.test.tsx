@@ -8,9 +8,29 @@ describe("Given a ReactPortal component", () => {
 
       const elementReactPortal = screen.getByTestId("custom-element");
 
-      elementReactPortal.remove();
+      expect(elementReactPortal).toBeInTheDocument();
 
-      expect(elementReactPortal).toBeTruthy();
+      elementReactPortal.remove();
+    });
+  });
+
+  describe("When its invoked twice", () => {
+    test("Then it should render 2 React Portal, but with only 1 div element as a custom wrapper for both of them, hence 3 divs in total", () => {
+      render(
+        <>
+          <ReactPortal />
+          <ReactPortal />
+        </>
+      );
+
+      const elementReactPortal = screen.getAllByTestId("custom-element");
+
+      expect(elementReactPortal).toHaveLength(2);
+
+      // eslint-disable-next-line testing-library/no-node-access
+      const btn = document.querySelectorAll("div");
+
+      expect(btn).toHaveLength(3);
     });
   });
 });

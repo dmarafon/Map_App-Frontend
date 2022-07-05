@@ -20,11 +20,19 @@ const RegisterLoginForm = (): JSX.Element => {
 
   const [openingForm, setOpeningForm] = useState("loginForm");
 
-  const [loginFormData, setLoginFormData] = useState(loginFormInitialState);
+  const [loginFormData, setLoginFormData] = useState<{
+    email: string;
+    password: string;
+  }>(loginFormInitialState);
 
-  const [registerFormData, setRegisterFormData] = useState(
-    registerFormInitialState
-  );
+  const [registerFormData, setRegisterFormData] = useState<{
+    firstname: string;
+    surname: string;
+    email: string;
+    password: string;
+    city: string;
+    country: string;
+  }>(registerFormInitialState);
 
   const dispatch = useAppDispatch();
 
