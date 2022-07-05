@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import ReactPortal from "./ReactPortal";
+import ReactPortal from "../ReactPortal";
 
 describe("Given a ReactPortal component", () => {
   describe("When its invoked", () => {
@@ -28,9 +28,9 @@ describe("Given a ReactPortal component", () => {
       expect(elementReactPortal).toHaveLength(2);
 
       // eslint-disable-next-line testing-library/no-node-access
-      const btn = document.querySelectorAll("div");
+      const divElement = document.querySelectorAll("div");
 
-      expect(btn).toHaveLength(3);
+      expect(divElement).toHaveLength(3);
     });
   });
 });
