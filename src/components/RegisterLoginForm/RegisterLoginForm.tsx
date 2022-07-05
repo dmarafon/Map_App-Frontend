@@ -83,6 +83,8 @@ const RegisterLoginForm = (): JSX.Element => {
                 required
                 placeholder="EMAIL"
                 className="login__input--email"
+                aria-invalid="false"
+                aria-required="true"
               />
               <label className="login__label--email" htmlFor="email">
                 EMAIL
@@ -96,6 +98,8 @@ const RegisterLoginForm = (): JSX.Element => {
                 required
                 placeholder="PASSWORD"
                 className="login__input--password"
+                aria-invalid="false"
+                aria-required="true"
               />
               <label className="login__label--password" htmlFor="password">
                 PASSWORD
