@@ -49,7 +49,8 @@ const WelcomePageStyled = styled.div`
       flex-direction: column;
       align-items: center;
     }
-    padding-bottom: 200px;
+
+    padding-bottom: 50px;
 
     background: rgb(232, 29, 253);
     background: linear-gradient(176deg, #fd1d89 4%, rgba(252, 124, 69, 1) 100%);

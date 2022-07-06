@@ -264,6 +264,7 @@ const RegisterLoginFormStyled = styled.div`
     @media (max-width: 1022px) {
       flex-direction: column;
       align-items: center;
+      width: 250px;
     }
 
     width: 350px;
