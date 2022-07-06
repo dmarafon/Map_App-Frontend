@@ -72,10 +72,10 @@ const RegisterLoginForm = (): JSX.Element => {
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
-    if (openingForm === "loginForm") {
-      const validRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+    if (openingForm === "loginForm") {
       switch (true) {
         case loginFormData.email === "" && loginFormData.password === "":
           dispatch(apiResponseActionCreator("Blank"));
@@ -104,6 +104,7 @@ const RegisterLoginForm = (): JSX.Element => {
 
         case loginFormData.email === "":
           dispatch(apiResponseActionCreator("Email Blank"));
+
           break;
         case !loginFormData.email.match(validRegex):
           dispatch(apiResponseActionCreator("Email Invalid"));
@@ -124,9 +125,21 @@ const RegisterLoginForm = (): JSX.Element => {
           resetForm();
       }
     } else {
-      const dataToDispatch = { ...registerFormData };
+      switch (true) {
+        case registerFormData.firstname === "" ||
+          registerFormData.surname === "" ||
+          registerFormData.email === "" ||
+          registerFormData.password === "" ||
+          registerFormData.city === "" ||
+          registerFormData.country === "":
+          dispatch(apiResponseActionCreator("Register Blank"));
+          break;
 
-      dispatch(registerUserThunk(dataToDispatch));
+        default:
+          const dataToDispatch = { ...registerFormData };
+
+          dispatch(registerUserThunk(dataToDispatch));
+      }
     }
   };
 
@@ -158,9 +171,10 @@ const RegisterLoginForm = (): JSX.Element => {
               ) : (
                 ""
               )}
-              {apiMessage === "Blank" ||
-              apiMessage === "Email Blank" ||
-              apiMessage === "Email Blank & Password Invalid" ? (
+              {(apiMessage === "Blank" && !loginFormData.email) ||
+              (apiMessage === "Email Blank" && !loginFormData.email) ||
+              (apiMessage === "Email Blank & Password Invalid" &&
+                !loginFormData.email) ? (
                 <p className="login__paragraph--warning">Empty Email field</p>
               ) : (
                 ""
@@ -179,10 +193,12 @@ const RegisterLoginForm = (): JSX.Element => {
               <label className="login__label--password" htmlFor="password">
                 PASSWORD
               </label>
-              {apiMessage === "Blank" ||
-              apiMessage === "Password Blank" ||
-              apiMessage === "Email Valid & Password Blank" ||
-              apiMessage === "Email Invalid & Password Blank" ? (
+              {(apiMessage === "Blank" && !loginFormData.password) ||
+              (apiMessage === "Password Blank" && !loginFormData.password) ||
+              (apiMessage === "Email Valid & Password Blank" &&
+                !loginFormData.password) ||
+              (apiMessage === "Email Invalid & Password Blank" &&
+                !loginFormData.password) ? (
                 <p className="login__paragraph--warning">
                   Empty Password field
                 </p>
@@ -230,6 +246,7 @@ const RegisterLoginForm = (): JSX.Element => {
                   required
                   placeholder="FIRST NAME"
                   className="register__input--firstname"
+                  maxLength={33}
                 />
                 <label
                   className="register__label--firstname"
@@ -237,6 +254,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 >
                   FIRST NAME
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.firstname ? (
+                  <p className="login__paragraph--warning">
+                    Empty Firstname field
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="surname"
                   value={registerFormData.surname}
@@ -249,6 +274,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--surname" htmlFor="surname">
                   SURNAME
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.surname ? (
+                  <p className="login__paragraph--warning">
+                    Empty Surname field
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="email"
                   value={registerFormData.email}
@@ -261,6 +294,11 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--email" htmlFor="email">
                   EMAIL
                 </label>
+                {apiMessage === "Register Blank" && !registerFormData.email ? (
+                  <p className="login__paragraph--warning">Empty Email field</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="register__input--second_column">
                 <input
@@ -276,6 +314,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--password" htmlFor="password">
                   PASSWORD
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.password ? (
+                  <p className="login__paragraph--warning">
+                    Empty Password field
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="city"
                   value={registerFormData.city}
@@ -288,6 +334,11 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--city" htmlFor="city">
                   CITY
                 </label>
+                {apiMessage === "Register Blank" && !registerFormData.city ? (
+                  <p className="login__paragraph--warning">Empty City field</p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="country"
                   value={registerFormData.country}
@@ -300,6 +351,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--country" htmlFor="country">
                   COUNTRY
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.country ? (
+                  <p className="login__paragraph--warning">
+                    Empty Country field
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="login__button--container">
