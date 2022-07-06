@@ -1,14 +1,20 @@
 import { SyntheticEvent, useState } from "react";
-import { apiResponseActionCreator } from "../../redux/features/uiSlice";
+import {
+  apiResponseActionCreator,
+  cleanApiResponseActionCreator,
+} from "../../redux/features/uiSlice";
 import {
   loginUserThunk,
   registerUserThunk,
 } from "../../redux/thunks/userThunks";
 import { useAppDispatch, useAppSelector } from "../hooks";
+import ModalText from "../ModalText/ModalText";
 import RegisterLoginFormStyled from "./RegisterLoginFormStyled";
 
 const RegisterLoginForm = (): JSX.Element => {
   const apiMessage = useAppSelector((store) => store.ui.apiResponse);
+  const feedback = useAppSelector((store) => store.ui.feedback);
+
   const loginFormInitialState = { email: "", password: "" };
 
   const registerFormInitialState = {
@@ -149,42 +155,61 @@ const RegisterLoginForm = (): JSX.Element => {
     }
   };
 
+  const submitClosingModalResponse = () => {
+    dispatch(cleanApiResponseActionCreator());
+  };
+
   return (
     <RegisterLoginFormStyled>
       {openingForm === "loginForm" ? (
         <div className="login__form--container">
+          {apiMessage === "Incorrect Email" && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={feedback}
+              customFunction={""}
+            >
+              Wrong Email or Password
+              <p className="login__modal--break_text">
+                {" "}
+                Please, try again to Sign In
+              </p>
+            </ModalText>
+          )}
           <form onSubmit={submitForm} noValidate autoComplete="off">
             <h2 className="login__title">SIGN IN</h2>
+            <div>
+              <div className="login__input--container">
+                <input
+                  id="email"
+                  value={loginFormData.email}
+                  type="text"
+                  onChange={changeLoginData}
+                  required
+                  placeholder="EMAIL"
+                  className="login__input--email"
+                />
+                <label className="login__label--email" htmlFor="email">
+                  EMAIL
+                </label>
+              </div>
+            </div>
+            {apiMessage === "Email Invalid" ||
+            apiMessage === "Email Invalid & Password Blank" ||
+            apiMessage === "Email Invalid & Password Invalid" ? (
+              <p className="login__paragraph--warning">Invalid Email Address</p>
+            ) : (
+              ""
+            )}
+            {(apiMessage === "Blank" && !loginFormData.email) ||
+            (apiMessage === "Email Blank" && !loginFormData.email) ||
+            (apiMessage === "Email Blank & Password Invalid" &&
+              !loginFormData.email) ? (
+              <p className="login__paragraph--warning">Empty Email field</p>
+            ) : (
+              ""
+            )}
             <div className="login__input--container">
-              <input
-                id="email"
-                value={loginFormData.email}
-                type="text"
-                onChange={changeLoginData}
-                required
-                placeholder="EMAIL"
-                className="login__input--email"
-              />
-              <label className="login__label--email" htmlFor="email">
-                EMAIL
-              </label>
-              {apiMessage === "Email Invalid" ||
-              apiMessage === "Email Invalid & Password Blank" ||
-              apiMessage === "Email Invalid & Password Invalid" ? (
-                <p className="login__paragraph--warning">
-                  Invalid Email Address
-                </p>
-              ) : (
-                ""
-              )}
-              {(apiMessage === "Blank" && !loginFormData.email) ||
-              (apiMessage === "Email Blank" && !loginFormData.email) ||
-              (apiMessage === "Email Blank & Password Invalid" &&
-                !loginFormData.email) ? (
-                <p className="login__paragraph--warning">Empty Email field</p>
-              ) : (
-                ""
-              )}
               <input
                 autoComplete="current-password"
                 id="password"
@@ -199,28 +224,26 @@ const RegisterLoginForm = (): JSX.Element => {
               <label className="login__label--password" htmlFor="password">
                 PASSWORD
               </label>
-              {(apiMessage === "Blank" && !loginFormData.password) ||
-              (apiMessage === "Password Blank" && !loginFormData.password) ||
-              (apiMessage === "Email Valid & Password Blank" &&
-                !loginFormData.password) ||
-              (apiMessage === "Email Invalid & Password Blank" &&
-                !loginFormData.password) ? (
-                <p className="login__paragraph--warning">
-                  Empty Password field
-                </p>
-              ) : (
-                ""
-              )}
-              {apiMessage === "Password Length" ||
-              apiMessage === "Email Blank & Password Invalid" ||
-              apiMessage === "Email Invalid & Password Invalid" ? (
-                <p className="login__paragraph--warning">
-                  Password Should Have 5 to 15 Char.
-                </p>
-              ) : (
-                ""
-              )}
             </div>
+            {(apiMessage === "Blank" && !loginFormData.password) ||
+            (apiMessage === "Password Blank" && !loginFormData.password) ||
+            (apiMessage === "Email Valid & Password Blank" &&
+              !loginFormData.password) ||
+            (apiMessage === "Email Invalid & Password Blank" &&
+              !loginFormData.password) ? (
+              <p className="login__paragraph--warning">Empty Password field</p>
+            ) : (
+              ""
+            )}
+            {apiMessage === "Password Length" ||
+            apiMessage === "Email Blank & Password Invalid" ||
+            apiMessage === "Email Invalid & Password Invalid" ? (
+              <p className="login__paragraph--warning">
+                Password Should Have 5 to 15 Char.
+              </p>
+            ) : (
+              ""
+            )}
             <div className="login__button--container">
               <button className="login__button" type="submit" disabled={false}>
                 LOGIN
