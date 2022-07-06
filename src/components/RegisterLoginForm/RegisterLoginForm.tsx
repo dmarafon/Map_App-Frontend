@@ -274,6 +274,36 @@ const RegisterLoginForm = (): JSX.Element => {
         </div>
       ) : (
         <div className="register__form--container">
+          {apiMessage === "Unknown Error" && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={false}
+              customFunction={""}
+            >
+              Oops... We're sorry, something went wrong with our servers, try
+              again later
+              <p className="login__modal--break_text"></p>
+            </ModalText>
+          )}
+          {apiMessage.startsWith("Blank") && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={feedback}
+              customFunction={""}
+            >
+              Please, you left the {apiMessage.substring(6)} mandatory field in
+              blank
+            </ModalText>
+          )}
+          {apiMessage === "User alr" && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={feedback}
+              customFunction={""}
+            >
+              This email is already in use, please, choose another email
+            </ModalText>
+          )}
           <form onSubmit={submitForm} noValidate autoComplete="off">
             <h2 className="register__title">Sign Up</h2>
             <div className="register__input--container">
