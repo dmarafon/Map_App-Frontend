@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import { apiResponseActionCreator } from "../../redux/features/uiSlice";
 import {
   loginUserThunk,
   registerUserThunk,
@@ -62,13 +63,45 @@ const RegisterLoginForm = (): JSX.Element => {
     }
   };
 
+  const resetForm = () => {
+    setLoginFormData(loginFormInitialState);
+    setRegisterFormData(registerFormInitialState);
+  };
+
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
     if (openingForm === "loginForm") {
-      const dataToDispatch = { ...loginFormData };
+      const validRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-      dispatch(loginUserThunk(dataToDispatch));
+      switch (true) {
+        case loginFormData.email === "" && loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Blank"));
+          break;
+
+        case loginFormData.email === "":
+          dispatch(apiResponseActionCreator("Email Blank"));
+          break;
+
+        case !loginFormData.email.match(validRegex):
+          dispatch(apiResponseActionCreator("Email Invalid"));
+          break;
+
+        case loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Password Blank"));
+          break;
+
+        case loginFormData.password.length < 5:
+          dispatch(apiResponseActionCreator("Password Length"));
+          break;
+
+        default:
+          const dataToDispatch = { ...loginFormData };
+
+          dispatch(loginUserThunk(dataToDispatch));
+          resetForm();
+      }
     } else {
       const dataToDispatch = { ...registerFormData };
 
