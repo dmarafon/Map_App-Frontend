@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import ReactPortal from "../ReactPortalDom/ReactPortal";
 import ModalTextStyled from "./ModalTextStyled";
@@ -14,6 +14,15 @@ const ModalText = ({
   customFunction: any;
 }): JSX.Element => {
   const nodeRef = useRef(null);
+
+  useEffect(() => {
+    const closeOnEscapeKey = (event: { key: string }) =>
+      event.key === "Escape" ? handleClose() : null;
+    document.body.addEventListener("keydown", closeOnEscapeKey);
+    return () => {
+      document.body.removeEventListener("keydown", closeOnEscapeKey);
+    };
+  }, [handleClose]);
 
   const buttonOnClick = async () => {
     handleClose();

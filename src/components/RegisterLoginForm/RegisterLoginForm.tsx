@@ -1,13 +1,18 @@
 import { SyntheticEvent, useState } from "react";
-import { apiResponseActionCreator } from "../../redux/features/uiSlice";
+import {
+  apiResponseActionCreator,
+  cleanApiResponseActionCreator,
+} from "../../redux/features/uiSlice";
 import {
   loginUserThunk,
   registerUserThunk,
 } from "../../redux/thunks/userThunks";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import ModalText from "../ModalText/ModalText";
 import RegisterLoginFormStyled from "./RegisterLoginFormStyled";
 
 const RegisterLoginForm = (): JSX.Element => {
+  const apiMessage = useAppSelector((store) => store.ui.apiResponse);
   const loginFormInitialState = { email: "", password: "" };
 
   const registerFormInitialState = {
@@ -68,6 +73,10 @@ const RegisterLoginForm = (): JSX.Element => {
     setRegisterFormData(registerFormInitialState);
   };
 
+  const submitClosingModalResponse = () => {
+    dispatch(cleanApiResponseActionCreator());
+  };
+
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -111,6 +120,16 @@ const RegisterLoginForm = (): JSX.Element => {
 
   return (
     <RegisterLoginFormStyled>
+      {apiMessage === "Email Invalid" && (
+        <ModalText
+          handleClose={submitClosingModalResponse}
+          isOpen={false}
+          customFunction={""}
+        >
+          This is an invalid Email. Please, check the inputed email addressed
+          <p className="login__modal--break_text"></p>
+        </ModalText>
+      )}
       {openingForm === "loginForm" ? (
         <div className="login__form--container">
           <form onSubmit={submitForm} noValidate autoComplete="off">

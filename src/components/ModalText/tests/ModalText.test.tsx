@@ -27,33 +27,88 @@ describe("Given a Modal component", () => {
 
       expect(testButton).toBeInTheDocument();
     });
-    describe("When its invoked and the user clicks in the close button", () => {
-      test("Then the modal should trigger the passed function, in this test case the string 'test' logged in the console", () => {
-        const testFunction = () => console.log("test");
+  });
 
-        const expectedFunction = (console.log = jest.fn());
+  describe("When its invoked and the user clicks in the close button", () => {
+    test("Then the modal should trigger the passed function, in this test case the string 'test' logged in the console", () => {
+      const testFunction = () => console.log("test");
 
-        const expectedConsoledText = "test";
+      const expectedFunction = (console.log = jest.fn());
 
-        render(
-          <BrowserRouter>
-            <Provider store={store}>
-              <ModalText
-                children={"Test Modal"}
-                handleClose={testFunction}
-                isOpen={true}
-                customFunction={""}
-              />
-            </Provider>
-          </BrowserRouter>
-        );
+      const expectedConsoledText = "test";
 
-        const testButton = screen.getByRole("button");
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <ModalText
+              children={"Test Modal"}
+              handleClose={testFunction}
+              isOpen={true}
+              customFunction={""}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
 
-        userEvent.click(testButton);
+      const testButton = screen.getByRole("button");
 
-        expect(expectedFunction).toHaveBeenCalledWith(expectedConsoledText);
-      });
+      userEvent.click(testButton);
+
+      expect(expectedFunction).toHaveBeenCalledWith(expectedConsoledText);
+    });
+  });
+
+  describe("When its invoked and the user press the escape key", () => {
+    test("Then the modal should trigger the passed function, in this test case the string 'test' logged in the console", () => {
+      const testFunction = () => console.log("test");
+
+      const expectedFunction = (console.log = jest.fn());
+
+      const expectedConsoledText = "test";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <ModalText
+              children={"Test Modal"}
+              handleClose={testFunction}
+              isOpen={true}
+              customFunction={""}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      userEvent.keyboard("{Escape}");
+
+      expect(expectedFunction).toHaveBeenCalledWith(expectedConsoledText);
+    });
+  });
+
+  describe("When its invoked and the user press another key that is not escape, such as the 'Enter' key", () => {
+    test("Then the modal should not trigger the passed function, in this test case the string 'test' logged in the console", () => {
+      const testFunction = () => console.log("test");
+
+      const expectedFunction = (console.log = jest.fn());
+
+      const expectedConsoledText = "test";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <ModalText
+              children={"Test Modal"}
+              handleClose={testFunction}
+              isOpen={true}
+              customFunction={""}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      userEvent.keyboard("{Enter}");
+
+      expect(expectedFunction).not.toHaveBeenCalledWith(expectedConsoledText);
     });
   });
 });
