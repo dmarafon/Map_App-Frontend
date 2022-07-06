@@ -33,7 +33,7 @@ const ReactPortal = ({
     systemCreated = true;
     element = createWrapperAndAppendToBody(wrapperId);
 
-    setWrapperElement(element) as void;
+    setWrapperElement(element);
 
     return () => {
       if (systemCreated && element.parentNode) {
