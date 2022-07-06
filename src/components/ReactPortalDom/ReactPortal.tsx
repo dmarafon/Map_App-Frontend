@@ -8,10 +8,10 @@ declare module "react" {
 }
 
 const createWrapperAndAppendToBody = (wrapperId: string) => {
-  const wrapperElement = document.createElement("div") as HTMLElement;
-  wrapperElement.setAttribute("id", wrapperId) as void;
-  wrapperElement.setAttribute("data-testid", "custom-element") as void;
-  document.body.appendChild(wrapperElement) as HTMLElement;
+  const wrapperElement = document.createElement("div");
+  wrapperElement.setAttribute("id", wrapperId);
+  wrapperElement.setAttribute("data-testid", "custom-element");
+  document.body.appendChild(wrapperElement);
   return wrapperElement;
 };
 
@@ -31,13 +31,13 @@ const ReactPortal = ({
     let systemCreated = false;
 
     systemCreated = true;
-    element = createWrapperAndAppendToBody(wrapperId) as HTMLElement;
+    element = createWrapperAndAppendToBody(wrapperId);
 
     setWrapperElement(element) as void;
 
     return () => {
       if (systemCreated && element.parentNode) {
-        element.parentNode.removeChild(element) as HTMLElement;
+        element.parentNode.removeChild(element);
       }
     };
   }, [wrapperId]);
