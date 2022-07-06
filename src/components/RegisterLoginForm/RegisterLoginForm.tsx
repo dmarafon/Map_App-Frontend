@@ -176,6 +176,17 @@ const RegisterLoginForm = (): JSX.Element => {
               </p>
             </ModalText>
           )}
+          {apiMessage === "Unknown Error" && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={false}
+              customFunction={""}
+            >
+              Oops... We're sorry, something went wrong with our servers, try
+              again later
+              <p className="login__modal--break_text"></p>
+            </ModalText>
+          )}
           <form onSubmit={submitForm} noValidate autoComplete="off">
             <h2 className="login__title">SIGN IN</h2>
             <div>

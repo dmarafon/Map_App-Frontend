@@ -5,7 +5,7 @@ import {
 
 describe("Given a errorLoginValidation function", () => {
   describe("When its invoked passing an object with the necessary properties", () => {
-    test("Then it should return the string message in the object 'Test Message', minus the last letter, as 'Test Messag", () => {
+    test("Then it should return the string message in the object 'Test Message'", () => {
       const expectedErrorString = "Test Message";
       const expectedErrorSent = {
         response: { data: { message: "Test Message" } },
