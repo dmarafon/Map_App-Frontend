@@ -91,10 +91,20 @@ const RegisterLoginForm = (): JSX.Element => {
           dispatch(apiResponseActionCreator("Email Invalid & Password Blank"));
           break;
 
+        case loginFormData.email === "" && loginFormData.password.length < 5:
+          dispatch(apiResponseActionCreator("Email Blank & Password Invalid"));
+          break;
+
+        case !loginFormData.email.match(validRegex) &&
+          loginFormData.password.length < 5:
+          dispatch(
+            apiResponseActionCreator("Email Invalid & Password Invalid")
+          );
+          break;
+
         case loginFormData.email === "":
           dispatch(apiResponseActionCreator("Email Blank"));
           break;
-
         case !loginFormData.email.match(validRegex):
           dispatch(apiResponseActionCreator("Email Invalid"));
           break;
@@ -140,14 +150,17 @@ const RegisterLoginForm = (): JSX.Element => {
                 EMAIL
               </label>
               {apiMessage === "Email Invalid" ||
-              apiMessage === "Email Invalid & Password Blank" ? (
+              apiMessage === "Email Invalid & Password Blank" ||
+              apiMessage === "Email Invalid & Password Invalid" ? (
                 <p className="login__paragraph--warning">
                   Invalid Email Address
                 </p>
               ) : (
                 ""
               )}
-              {apiMessage === "Blank" || apiMessage === "Email Blank" ? (
+              {apiMessage === "Blank" ||
+              apiMessage === "Email Blank" ||
+              apiMessage === "Email Blank & Password Invalid" ? (
                 <p className="login__paragraph--warning">Empty Email field</p>
               ) : (
                 ""
@@ -172,6 +185,15 @@ const RegisterLoginForm = (): JSX.Element => {
               apiMessage === "Email Invalid & Password Blank" ? (
                 <p className="login__paragraph--warning">
                   Empty Password field
+                </p>
+              ) : (
+                ""
+              )}
+              {apiMessage === "Password Length" ||
+              apiMessage === "Email Blank & Password Invalid" ||
+              apiMessage === "Email Invalid & Password Invalid" ? (
+                <p className="login__paragraph--warning">
+                  Password Should Have 5 to 15 Char.
                 </p>
               ) : (
                 ""
