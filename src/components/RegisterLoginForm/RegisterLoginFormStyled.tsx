@@ -263,7 +263,7 @@ const RegisterLoginFormStyled = styled.div`
   .register__input--container {
     display: flex;
     flex-direction: row;
-    column-gap: 50px;
+    gap: 25px;
     align-items: flex-start;
     @media (max-width: 1022px) {
       flex-direction: column;
@@ -352,6 +352,8 @@ const RegisterLoginFormStyled = styled.div`
     font-family: "IBM Plex Sans";
     font-size: 14px;
     margin-top: -40px;
+    position: absolute;
+    z-index: 10;
   }
 
   .register__input--firstname {

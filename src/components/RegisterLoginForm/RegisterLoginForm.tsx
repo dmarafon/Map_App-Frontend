@@ -135,6 +135,12 @@ const RegisterLoginForm = (): JSX.Element => {
           dispatch(apiResponseActionCreator("Register Blank"));
           break;
 
+        case registerFormData.password.length <= 5:
+          break;
+
+        case !registerFormData.email.match(validRegex):
+          break;
+
         default:
           const dataToDispatch = { ...registerFormData };
 
@@ -299,6 +305,16 @@ const RegisterLoginForm = (): JSX.Element => {
                 ) : (
                   ""
                 )}
+                {registerFormData.email.length > 0 &&
+                !registerFormData.email.match(
+                  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                ) ? (
+                  <p className="login__paragraph--warning">
+                    Invalid Email Address
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="register__input--second_column">
                 <input
@@ -310,6 +326,7 @@ const RegisterLoginForm = (): JSX.Element => {
                   required
                   placeholder="PASSWORD"
                   className="register__input--password"
+                  maxLength={15}
                 />
                 <label className="register__label--password" htmlFor="password">
                   PASSWORD
@@ -319,6 +336,12 @@ const RegisterLoginForm = (): JSX.Element => {
                   <p className="login__paragraph--warning">
                     Empty Password field
                   </p>
+                ) : (
+                  ""
+                )}
+                {registerFormData.password.length > 0 &&
+                registerFormData.password.length < 5 ? (
+                  <p className="login__paragraph--warning">Minimun 5 Char.</p>
                 ) : (
                   ""
                 )}
