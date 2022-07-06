@@ -1,14 +1,10 @@
 import { SyntheticEvent, useState } from "react";
-import {
-  apiResponseActionCreator,
-  cleanApiResponseActionCreator,
-} from "../../redux/features/uiSlice";
+import { apiResponseActionCreator } from "../../redux/features/uiSlice";
 import {
   loginUserThunk,
   registerUserThunk,
 } from "../../redux/thunks/userThunks";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import ModalText from "../ModalText/ModalText";
 import RegisterLoginFormStyled from "./RegisterLoginFormStyled";
 
 const RegisterLoginForm = (): JSX.Element => {
@@ -73,10 +69,6 @@ const RegisterLoginForm = (): JSX.Element => {
     setRegisterFormData(registerFormInitialState);
   };
 
-  const submitClosingModalResponse = () => {
-    dispatch(cleanApiResponseActionCreator());
-  };
-
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -87,6 +79,16 @@ const RegisterLoginForm = (): JSX.Element => {
       switch (true) {
         case loginFormData.email === "" && loginFormData.password === "":
           dispatch(apiResponseActionCreator("Blank"));
+          break;
+
+        case loginFormData.email.match(validRegex) &&
+          loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Email Valid & Password Blank"));
+          break;
+
+        case !loginFormData.email.match(validRegex) &&
+          loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Email Invalid & Password Blank"));
           break;
 
         case loginFormData.email === "":
@@ -120,16 +122,6 @@ const RegisterLoginForm = (): JSX.Element => {
 
   return (
     <RegisterLoginFormStyled>
-      {apiMessage === "Email Invalid" && (
-        <ModalText
-          handleClose={submitClosingModalResponse}
-          isOpen={false}
-          customFunction={""}
-        >
-          This is an invalid Email. Please, check the inputed email addressed
-          <p className="login__modal--break_text"></p>
-        </ModalText>
-      )}
       {openingForm === "loginForm" ? (
         <div className="login__form--container">
           <form onSubmit={submitForm} noValidate autoComplete="off">
@@ -147,6 +139,19 @@ const RegisterLoginForm = (): JSX.Element => {
               <label className="login__label--email" htmlFor="email">
                 EMAIL
               </label>
+              {apiMessage === "Email Invalid" ||
+              apiMessage === "Email Invalid & Password Blank" ? (
+                <p className="login__paragraph--warning">
+                  Invalid Email Address
+                </p>
+              ) : (
+                ""
+              )}
+              {apiMessage === "Blank" || apiMessage === "Email Blank" ? (
+                <p className="login__paragraph--warning">Empty Email field</p>
+              ) : (
+                ""
+              )}
               <input
                 autoComplete="current-password"
                 id="password"
@@ -156,10 +161,21 @@ const RegisterLoginForm = (): JSX.Element => {
                 required
                 placeholder="PASSWORD"
                 className="login__input--password"
+                maxLength={15}
               />
               <label className="login__label--password" htmlFor="password">
                 PASSWORD
               </label>
+              {apiMessage === "Blank" ||
+              apiMessage === "Password Blank" ||
+              apiMessage === "Email Valid & Password Blank" ||
+              apiMessage === "Email Invalid & Password Blank" ? (
+                <p className="login__paragraph--warning">
+                  Empty Password field
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="login__button--container">
               <button className="login__button" type="submit" disabled={false}>

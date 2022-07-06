@@ -3,6 +3,7 @@ import styled from "styled-components";
 const RegisterLoginFormStyled = styled.div`
   .login__form--container {
     width: 350px;
+    height: 600px;
     padding: 40px;
     margin-top: 120px;
 
@@ -28,10 +29,12 @@ const RegisterLoginFormStyled = styled.div`
 
   .register__form--container {
     width: 420px;
+    height: 600px;
     padding: 40px;
     margin-top: 120px;
     @media (max-width: 1022px) {
       width: 350px;
+      height: 900px;
       display: inline-block;
     }
 
@@ -61,6 +64,7 @@ const RegisterLoginFormStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 60px;
 
     font-family: "Cairo", sans-serif;
     font-size: 30px;
@@ -343,6 +347,13 @@ const RegisterLoginFormStyled = styled.div`
     background: transparent;
   }
 
+  .login__paragraph--warning {
+    color: rgba(252, 124, 69, 1);
+    font-family: "IBM Plex Sans";
+    font-size: 14px;
+    margin-top: -40px;
+  }
+
   .register__input--firstname {
     width: 100%;
     padding: 10px 0;
@@ -591,6 +602,7 @@ const RegisterLoginFormStyled = styled.div`
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
+    margin-top: 40px;
 
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
