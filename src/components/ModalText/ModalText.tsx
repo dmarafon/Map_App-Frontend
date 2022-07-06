@@ -7,7 +7,6 @@ const ModalText = ({
   children,
   handleClose,
   isOpen,
-  customFunction,
 }: {
   children: any;
   handleClose: any;
