@@ -4,10 +4,11 @@ import {
   loginUserThunk,
   registerUserThunk,
 } from "../../redux/thunks/userThunks";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import RegisterLoginFormStyled from "./RegisterLoginFormStyled";
 
 const RegisterLoginForm = (): JSX.Element => {
+  const apiMessage = useAppSelector((store) => store.ui.apiResponse);
   const loginFormInitialState = { email: "", password: "" };
 
   const registerFormInitialState = {
@@ -71,19 +72,40 @@ const RegisterLoginForm = (): JSX.Element => {
   const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
-    if (openingForm === "loginForm") {
-      const validRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+    if (openingForm === "loginForm") {
       switch (true) {
         case loginFormData.email === "" && loginFormData.password === "":
           dispatch(apiResponseActionCreator("Blank"));
           break;
 
-        case loginFormData.email === "":
-          dispatch(apiResponseActionCreator("Email Blank"));
+        case loginFormData.email.match(validRegex) &&
+          loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Email Valid & Password Blank"));
           break;
 
+        case !loginFormData.email.match(validRegex) &&
+          loginFormData.password === "":
+          dispatch(apiResponseActionCreator("Email Invalid & Password Blank"));
+          break;
+
+        case loginFormData.email === "" && loginFormData.password.length < 5:
+          dispatch(apiResponseActionCreator("Email Blank & Password Invalid"));
+          break;
+
+        case !loginFormData.email.match(validRegex) &&
+          loginFormData.password.length < 5:
+          dispatch(
+            apiResponseActionCreator("Email Invalid & Password Invalid")
+          );
+          break;
+
+        case loginFormData.email === "":
+          dispatch(apiResponseActionCreator("Email Blank"));
+
+          break;
         case !loginFormData.email.match(validRegex):
           dispatch(apiResponseActionCreator("Email Invalid"));
           break;
@@ -103,9 +125,27 @@ const RegisterLoginForm = (): JSX.Element => {
           resetForm();
       }
     } else {
-      const dataToDispatch = { ...registerFormData };
+      switch (true) {
+        case registerFormData.firstname === "" ||
+          registerFormData.surname === "" ||
+          registerFormData.email === "" ||
+          registerFormData.password === "" ||
+          registerFormData.city === "" ||
+          registerFormData.country === "":
+          dispatch(apiResponseActionCreator("Register Blank"));
+          break;
 
-      dispatch(registerUserThunk(dataToDispatch));
+        case registerFormData.password.length <= 5:
+          break;
+
+        case !registerFormData.email.match(validRegex):
+          break;
+
+        default:
+          const dataToDispatch = { ...registerFormData };
+
+          dispatch(registerUserThunk(dataToDispatch));
+      }
     }
   };
 
@@ -128,6 +168,23 @@ const RegisterLoginForm = (): JSX.Element => {
               <label className="login__label--email" htmlFor="email">
                 EMAIL
               </label>
+              {apiMessage === "Email Invalid" ||
+              apiMessage === "Email Invalid & Password Blank" ||
+              apiMessage === "Email Invalid & Password Invalid" ? (
+                <p className="login__paragraph--warning">
+                  Invalid Email Address
+                </p>
+              ) : (
+                ""
+              )}
+              {(apiMessage === "Blank" && !loginFormData.email) ||
+              (apiMessage === "Email Blank" && !loginFormData.email) ||
+              (apiMessage === "Email Blank & Password Invalid" &&
+                !loginFormData.email) ? (
+                <p className="login__paragraph--warning">Empty Email field</p>
+              ) : (
+                ""
+              )}
               <input
                 autoComplete="current-password"
                 id="password"
@@ -137,10 +194,32 @@ const RegisterLoginForm = (): JSX.Element => {
                 required
                 placeholder="PASSWORD"
                 className="login__input--password"
+                maxLength={15}
               />
               <label className="login__label--password" htmlFor="password">
                 PASSWORD
               </label>
+              {(apiMessage === "Blank" && !loginFormData.password) ||
+              (apiMessage === "Password Blank" && !loginFormData.password) ||
+              (apiMessage === "Email Valid & Password Blank" &&
+                !loginFormData.password) ||
+              (apiMessage === "Email Invalid & Password Blank" &&
+                !loginFormData.password) ? (
+                <p className="login__paragraph--warning">
+                  Empty Password field
+                </p>
+              ) : (
+                ""
+              )}
+              {apiMessage === "Password Length" ||
+              apiMessage === "Email Blank & Password Invalid" ||
+              apiMessage === "Email Invalid & Password Invalid" ? (
+                <p className="login__paragraph--warning">
+                  Password Should Have 5 to 15 Char.
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="login__button--container">
               <button className="login__button" type="submit" disabled={false}>
@@ -173,6 +252,7 @@ const RegisterLoginForm = (): JSX.Element => {
                   required
                   placeholder="FIRST NAME"
                   className="register__input--firstname"
+                  maxLength={33}
                 />
                 <label
                   className="register__label--firstname"
@@ -180,6 +260,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 >
                   FIRST NAME
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.firstname ? (
+                  <p className="login__paragraph--warning">
+                    Empty Firstname field
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="surname"
                   value={registerFormData.surname}
@@ -192,6 +280,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--surname" htmlFor="surname">
                   SURNAME
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.surname ? (
+                  <p className="login__paragraph--warning">
+                    Empty Surname field
+                  </p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="email"
                   value={registerFormData.email}
@@ -204,6 +300,21 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--email" htmlFor="email">
                   EMAIL
                 </label>
+                {apiMessage === "Register Blank" && !registerFormData.email ? (
+                  <p className="login__paragraph--warning">Empty Email field</p>
+                ) : (
+                  ""
+                )}
+                {registerFormData.email.length > 0 &&
+                !registerFormData.email.match(
+                  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                ) ? (
+                  <p className="login__paragraph--warning">
+                    Invalid Email Address
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="register__input--second_column">
                 <input
@@ -215,10 +326,25 @@ const RegisterLoginForm = (): JSX.Element => {
                   required
                   placeholder="PASSWORD"
                   className="register__input--password"
+                  maxLength={15}
                 />
                 <label className="register__label--password" htmlFor="password">
                   PASSWORD
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.password ? (
+                  <p className="login__paragraph--warning">
+                    Empty Password field
+                  </p>
+                ) : (
+                  ""
+                )}
+                {registerFormData.password.length > 0 &&
+                registerFormData.password.length < 5 ? (
+                  <p className="login__paragraph--warning">Minimun 5 Char.</p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="city"
                   value={registerFormData.city}
@@ -231,6 +357,11 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--city" htmlFor="city">
                   CITY
                 </label>
+                {apiMessage === "Register Blank" && !registerFormData.city ? (
+                  <p className="login__paragraph--warning">Empty City field</p>
+                ) : (
+                  ""
+                )}
                 <input
                   id="country"
                   value={registerFormData.country}
@@ -243,6 +374,14 @@ const RegisterLoginForm = (): JSX.Element => {
                 <label className="register__label--country" htmlFor="country">
                   COUNTRY
                 </label>
+                {apiMessage === "Register Blank" &&
+                !registerFormData.country ? (
+                  <p className="login__paragraph--warning">
+                    Empty Country field
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="login__button--container">

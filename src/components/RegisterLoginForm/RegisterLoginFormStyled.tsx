@@ -3,6 +3,7 @@ import styled from "styled-components";
 const RegisterLoginFormStyled = styled.div`
   .login__form--container {
     width: 350px;
+    height: 600px;
     padding: 40px;
     margin-top: 120px;
 
@@ -28,10 +29,12 @@ const RegisterLoginFormStyled = styled.div`
 
   .register__form--container {
     width: 420px;
+    height: 600px;
     padding: 40px;
     margin-top: 120px;
     @media (max-width: 1022px) {
       width: 350px;
+      height: 900px;
       display: inline-block;
     }
 
@@ -61,6 +64,7 @@ const RegisterLoginFormStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 60px;
 
     font-family: "Cairo", sans-serif;
     font-size: 30px;
@@ -259,7 +263,7 @@ const RegisterLoginFormStyled = styled.div`
   .register__input--container {
     display: flex;
     flex-direction: row;
-    column-gap: 50px;
+    gap: 25px;
     align-items: flex-start;
     @media (max-width: 1022px) {
       flex-direction: column;
@@ -341,6 +345,15 @@ const RegisterLoginFormStyled = styled.div`
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
+  }
+
+  .login__paragraph--warning {
+    color: rgba(252, 124, 69, 1);
+    font-family: "IBM Plex Sans";
+    font-size: 14px;
+    margin-top: -40px;
+    position: absolute;
+    z-index: 10;
   }
 
   .register__input--firstname {
@@ -591,6 +604,7 @@ const RegisterLoginFormStyled = styled.div`
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
+    margin-top: 40px;
 
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
