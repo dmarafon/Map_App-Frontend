@@ -116,10 +116,6 @@ const RegisterLoginForm = (): JSX.Element => {
           dispatch(apiResponseActionCreator("Email Invalid"));
           break;
 
-        case loginFormData.password === "":
-          dispatch(apiResponseActionCreator("Password Blank"));
-          break;
-
         case loginFormData.password.length < 5:
           dispatch(apiResponseActionCreator("Password Length"));
           break;
@@ -237,7 +233,6 @@ const RegisterLoginForm = (): JSX.Element => {
               </label>
             </div>
             {(apiMessage === "Blank" && !loginFormData.password) ||
-            (apiMessage === "Password Blank" && !loginFormData.password) ||
             (apiMessage === "Email Valid & Password Blank" &&
               !loginFormData.password) ||
             (apiMessage === "Email Invalid & Password Blank" &&
