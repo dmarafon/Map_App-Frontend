@@ -137,7 +137,7 @@ const RegisterLoginForm = (): JSX.Element => {
           dispatch(apiResponseActionCreator("Register Blank"));
           break;
 
-        case registerFormData.password.length <= 5:
+        case registerFormData.password.length < 5:
           break;
 
         case !registerFormData.email.match(validRegex):

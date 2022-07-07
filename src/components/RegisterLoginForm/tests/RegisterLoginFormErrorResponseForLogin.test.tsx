@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../../redux/store/store";
-import { loginUserThunk } from "../../../redux/thunks/userThunks";
 import RegisterLoginForm from "../RegisterLoginForm";
 
 const mockDispatch = jest.fn();
@@ -384,11 +383,6 @@ describe("Given a RegisterLogin Page", () => {
     test("Then the dispatch function should be called with the Thunk", async () => {
       const textInput = ["test@test.com", "12345"];
 
-      const actionToBeDispatched = loginUserThunk({
-        email: "test@test.com",
-        password: "12345",
-      });
-
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -412,13 +406,7 @@ describe("Given a RegisterLogin Page", () => {
 
       userEvent.click(signInButton);
 
-      console.log(mockDispatch.mock.calls[0]);
-
       expect(mockDispatch).toHaveBeenCalledWith(expect.any(Function));
-
-      await waitFor(() => {
-        store.dispatch(actionToBeDispatched);
-      });
     });
   });
 });
