@@ -139,4 +139,137 @@ describe("Given a RegisterLogin Page", () => {
       expect(expectedPasswordWarning).toBeInTheDocument();
     });
   });
+
+  describe("When the user leaves the email field in blank and fill with an invalid  password the given inputs", () => {
+    test("Then a warning will show for the invalid Email and another for the Password field explaining that its blank", async () => {
+      const textInput = ["1234"];
+
+      const actionToBeDispatched = {
+        payload: "Email Blank & Password Invalid",
+        type: "ui/apiResponse",
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterLoginForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const passwordField = screen.getByLabelText(/password/i);
+
+      userEvent.type(passwordField, textInput[0]);
+
+      const signInButton = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(signInButton);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToBeDispatched);
+
+      await waitFor(() => {
+        store.dispatch(actionToBeDispatched);
+      });
+
+      const expectedEmailWarning = screen.queryByText(/empty email field/i);
+
+      const expectedPasswordWarning = screen.getByText(
+        /password should have 5 to 15 char./i
+      );
+
+      expect(expectedEmailWarning).toBeInTheDocument();
+
+      expect(expectedPasswordWarning).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user adds an invalid email and an invalid password as well", () => {
+    test("Then a warning will show for the invalid Email and another for the Password field explaining that both are invalid", async () => {
+      const textInput = ["test", "1234"];
+
+      const actionToBeDispatched = {
+        payload: "Email Invalid & Password Invalid",
+        type: "ui/apiResponse",
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterLoginForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const emailField = screen.getByRole("textbox", {
+        name: /email/i,
+      });
+      const passwordField = screen.getByLabelText(/password/i);
+
+      userEvent.type(emailField, textInput[0]);
+      userEvent.type(passwordField, textInput[1]);
+
+      const signInButton = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(signInButton);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToBeDispatched);
+
+      await waitFor(() => {
+        store.dispatch(actionToBeDispatched);
+      });
+
+      const expectedEmailWarning = screen.queryByText(/invalid email address/i);
+
+      const expectedPasswordWarning = screen.getByText(
+        /password should have 5 to 15 char./i
+      );
+
+      expect(expectedEmailWarning).toBeInTheDocument();
+
+      expect(expectedPasswordWarning).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user leaves the email in blank but adds a valid password", () => {
+    test("Then only a warning will show that the email field is blank", async () => {
+      const textInput = ["12345"];
+
+      const actionToBeDispatched = {
+        payload: "Email Blank",
+        type: "ui/apiResponse",
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterLoginForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const passwordField = screen.getByLabelText(/password/i);
+
+      userEvent.type(passwordField, textInput[0]);
+
+      const signInButton = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(signInButton);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToBeDispatched);
+
+      await waitFor(() => {
+        store.dispatch(actionToBeDispatched);
+      });
+
+      const expectedEmailWarning = screen.queryByText(/empty email field/i);
+
+      expect(expectedEmailWarning).toBeInTheDocument();
+    });
+  });
 });
