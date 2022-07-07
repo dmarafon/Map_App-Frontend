@@ -255,7 +255,7 @@ const RegisterLoginFormStyled = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    width: 240px;
+    width: 250px;
 
     color: rgba(252, 124, 69, 1);
   }
