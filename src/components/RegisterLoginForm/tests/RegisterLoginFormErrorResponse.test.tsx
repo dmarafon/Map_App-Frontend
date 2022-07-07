@@ -269,7 +269,63 @@ describe("Given a RegisterLogin Page", () => {
 
       const expectedEmailWarning = screen.queryByText(/empty email field/i);
 
+      const expectedPasswordWarning = screen.queryByText(
+        /password should have 5 to 15 char./i
+      );
+
       expect(expectedEmailWarning).toBeInTheDocument();
+
+      expect(expectedPasswordWarning).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When the user adds an invalid email but adds a valid password", () => {
+    test("Then only a warning will show that the email field is invalid", async () => {
+      const textInput = ["test", "12345"];
+
+      const actionToBeDispatched = {
+        payload: "Email Invalid",
+        type: "ui/apiResponse",
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterLoginForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const emailField = screen.getByRole("textbox", {
+        name: /email/i,
+      });
+
+      const passwordField = screen.getByLabelText(/password/i);
+
+      userEvent.type(emailField, textInput[0]);
+      userEvent.type(passwordField, textInput[1]);
+
+      const signInButton = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(signInButton);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToBeDispatched);
+
+      await waitFor(() => {
+        store.dispatch(actionToBeDispatched);
+      });
+
+      const expectedEmailWarning = screen.queryByText(/invalid email address/i);
+
+      const expectedPasswordWarning = screen.queryByText(
+        /password should have 5 to 15 char./i
+      );
+
+      expect(expectedEmailWarning).toBeInTheDocument();
+
+      expect(expectedPasswordWarning).not.toBeInTheDocument();
     });
   });
 });
