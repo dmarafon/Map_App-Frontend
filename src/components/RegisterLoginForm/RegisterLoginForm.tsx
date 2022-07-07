@@ -285,16 +285,6 @@ const RegisterLoginForm = (): JSX.Element => {
               <p className="login__modal--break_text"></p>
             </ModalText>
           )}
-          {apiMessage.startsWith("Blank") && (
-            <ModalText
-              handleClose={submitClosingModalResponse}
-              isOpen={feedback}
-              customFunction={""}
-            >
-              Please, you left the {apiMessage.substring(6)} mandatory field in
-              blank
-            </ModalText>
-          )}
           {apiMessage === "User alr" && (
             <ModalText
               handleClose={submitClosingModalResponse}
