@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FooterStyled = styled.footer`
-  font-family: "Karla", sans-serif;
+  font-family: "IBM Plex", sans-serif;
   margin-top: 5vh;
   margin-bottom: 5vh;
   @media (max-width: 920px) {

@@ -27,7 +27,7 @@ const About = (): JSX.Element => {
         <div className="about__container">
           {!elementVisible && (
             <div className="about__info--container">
-              <div>
+              <div className="about__info--text">
                 <p className="about__paragraph--text">
                   {" "}
                   &gt; Save Your favorite Places in the Globe
@@ -38,7 +38,7 @@ const About = (): JSX.Element => {
                 </p>
                 <p className="about__paragraph--text">
                   {" "}
-                  &gt; Save Your favorite Places in the Globe
+                  &gt; Create Routes and add your own Notes and Photos
                 </p>
               </div>
               <div>

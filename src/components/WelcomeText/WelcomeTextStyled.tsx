@@ -18,8 +18,11 @@ const WelcomeTextStyled = styled.div`
   .welcome__image--logo {
     margin-top: 40px;
     margin-left: -20px;
-    @media (max-width: 590px) {
+    @media (min-width: 485) and (max-width: 590px) {
       max-height: 125px;
+    }
+    @media (max-width: 485px) {
+      max-height: 100px;
     }
   }
 
@@ -78,6 +81,9 @@ const WelcomeTextStyled = styled.div`
     @media (max-width: 590px) {
       font-size: 30px;
     }
+    @media (max-width: 485px) {
+      font-size: 25px;
+    }
   }
 
   .welcome__paragraph--regular_text_second {
@@ -89,6 +95,9 @@ const WelcomeTextStyled = styled.div`
     @media (max-width: 590px) {
       font-size: 30px;
     }
+    @media (max-width: 485px) {
+      font-size: 25px;
+    }
   }
   .welcome__paragraph--regular_text_third {
     font-family: "Cairo", sans-serif;
@@ -98,6 +107,9 @@ const WelcomeTextStyled = styled.div`
     margin-top: -40px;
     @media (max-width: 590px) {
       font-size: 30px;
+    }
+    @media (max-width: 485px) {
+      font-size: 25px;
     }
   }
 `;
