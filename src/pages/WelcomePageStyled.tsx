@@ -26,9 +26,12 @@ const WelcomePageStyled = styled.div`
     stroke: #7d2d68;
     stroke-width: 17px;
 
-    margin-left: 75px;
-    margin-right: 75px;
+    @media (min-width: 1023px) and (max-width: 1385px) {
+      display: none;
+    }
+
     @media (max-width: 1022px) {
+      display: block;
       width: 30%;
       margin-top: 20px;
     }
