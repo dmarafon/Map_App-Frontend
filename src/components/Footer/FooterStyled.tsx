@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 const FooterStyled = styled.footer`
-  font-family: "IBM Plex", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   margin-top: 5vh;
-  margin-bottom: 5vh;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  background: rgb(232, 29, 253);
+  background: linear-gradient(176deg, #fd1d89 4%, rgba(252, 124, 69, 1) 100%);
+
   @media (max-width: 920px) {
     font-size: 20px;
     display: flex;
+    margin-top: 30vh;
   }
 
   > * {
@@ -79,6 +84,15 @@ const FooterStyled = styled.footer`
       height: 50px;
       margin-left: 30px;
     }
+  }
+
+  .footer__image--container {
+    margin-left: 50px;
+    margin-top: 40px;
+  }
+
+  .footer__image--logo {
+    filter: invert(1);
   }
 `;
 

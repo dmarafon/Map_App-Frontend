@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import store from "../../redux/store/store";
-import Footer from "./Footer";
+import store from "../../.././redux/store/store";
+import Footer from ".././Footer";
 
 describe("Given a Footer component", () => {
   describe("When it's invoked", () => {
