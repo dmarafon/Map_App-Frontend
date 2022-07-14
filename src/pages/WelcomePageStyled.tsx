@@ -5,6 +5,7 @@ const WelcomePageStyled = styled.div`
     display: flex;
     column-gap: 38vw;
     align-items: flex-start;
+    justify-content: space-around;
 
     @media (min-width: 1475px) and (max-width: 1580px) {
       column-gap: 30vw;
@@ -52,6 +53,7 @@ const WelcomePageStyled = styled.div`
     @media (max-width: 1022px) {
       flex-direction: column;
       align-items: center;
+      justify-content: space-around;
     }
 
     padding-bottom: 50px;

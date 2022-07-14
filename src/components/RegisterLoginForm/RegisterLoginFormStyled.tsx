@@ -6,6 +6,7 @@ const RegisterLoginFormStyled = styled.div`
     height: 600px;
     padding: 40px;
     margin-top: 120px;
+    margin-right: 100px;
 
     background: rgba(255, 255, 255, 0.753);
     box-sizing: border-box;
@@ -14,6 +15,10 @@ const RegisterLoginFormStyled = styled.div`
 
     display: inline-block;
     animation: move-left 1.5s forwards;
+
+    @media (max-width: 1022px) {
+      margin-right: 0;
+    }
   }
 
   @keyframes move-left {
@@ -32,10 +37,13 @@ const RegisterLoginFormStyled = styled.div`
     height: 600px;
     padding: 40px;
     margin-top: 120px;
+    margin-right: 80px;
     @media (max-width: 1022px) {
       width: 350px;
       height: 900px;
       display: inline-block;
+      margin-right: 0;
+      gap: 0;
     }
 
     background: rgba(255, 255, 255, 0.753);
@@ -269,6 +277,7 @@ const RegisterLoginFormStyled = styled.div`
       flex-direction: column;
       align-items: center;
       width: 250px;
+      gap: 0;
     }
 
     width: 350px;
