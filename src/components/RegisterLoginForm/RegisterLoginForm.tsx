@@ -172,6 +172,19 @@ const RegisterLoginForm = (): JSX.Element => {
               </p>
             </ModalText>
           )}
+          {apiMessage === "Incorrect Passw" && (
+            <ModalText
+              handleClose={submitClosingModalResponse}
+              isOpen={feedback}
+              customFunction={""}
+            >
+              Wrong Email or Password
+              <p className="login__modal--break_text">
+                {" "}
+                Please, try again to Sign In
+              </p>
+            </ModalText>
+          )}
           {apiMessage === "Unknown Error" && (
             <ModalText
               handleClose={submitClosingModalResponse}

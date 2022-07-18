@@ -5,7 +5,6 @@ export const errorLoginValidation = (error: any) => {
     if (typeof error?.response?.data?.message === "undefined") {
       return "Unknown Error";
     }
-    console.log(error.response.data.message.substring(0, 14));
     return error.response.data.message.substring(0, 15);
   }
 };
