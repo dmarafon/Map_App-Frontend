@@ -2,6 +2,7 @@ import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./components/hooks";
+import MapPage from "./pages/MapPage/MapPage";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import {
   loginActionCreator,
@@ -29,6 +30,10 @@ const App = (): JSX.Element => {
       <Route
         path="/"
         element={token ? <Navigate to="/map" /> : <Navigate to="/welcome" />}
+      />
+      <Route
+        path="/map"
+        element={token ? <MapPage /> : <Navigate to="/welcome" />}
       />
       <Route
         path="/welcome"
