@@ -38,6 +38,7 @@
     "collectCoverageFrom": [
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
+      "!src/components/About/About.tsx",
       "!src/react-app-env.d.ts",
       "!src/types/*",
       "!src/**/*.test.ts",
