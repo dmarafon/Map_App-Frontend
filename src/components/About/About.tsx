@@ -8,7 +8,7 @@ const About = (): JSX.Element => {
     let heightToHideFrom = 100;
     const windowScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
-
+    /* istanbul ignore next */
     if (windowScroll > heightToHideFrom) {
       elementVisible && setElementVisible(false);
     } else {
