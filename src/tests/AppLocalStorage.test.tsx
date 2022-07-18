@@ -33,7 +33,7 @@ describe("Given an App component", () => {
           email: "teste@teste",
           id: "1234",
           iat: 1654018896,
-          logged: true,
+          logged: false,
         },
         locations: [],
       };

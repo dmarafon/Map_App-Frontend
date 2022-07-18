@@ -34,7 +34,7 @@ describe("Given an App component", () => {
       const expectedTokenData = {
         ui: {
           feedback: false,
-          loading: false,
+          loading: true,
           apiResponse: "",
         },
         user: {
@@ -43,7 +43,7 @@ describe("Given an App component", () => {
           email: "",
           firstName: "",
           id: "",
-          logged: false,
+          logged: true,
         },
         locations: [],
       };
