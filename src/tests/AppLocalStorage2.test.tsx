@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "../../App";
-import { localStorageMock } from "../../mocks/localStorageMock";
-import store from "../../redux/store/store";
+import App from "../App";
+import { localStorageMock } from "../mocks/localStorageMock";
+import store from "../redux/store/store";
 const gettinUpLocalStorage = localStorageMock;
 const saveToStorage = (value: string) => {
   window.localStorage.setItem("token", value);
@@ -45,6 +45,7 @@ describe("Given an App component", () => {
           id: "",
           logged: false,
         },
+        locations: [],
       };
 
       expect(getStoreActionState).toStrictEqual(expectedTokenData);

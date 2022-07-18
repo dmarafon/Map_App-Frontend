@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "../../App";
-import { localStorageMock } from "../../mocks/localStorageMock";
-import store from "../../redux/store/store";
+import App from "../App";
+import { localStorageMock } from "../mocks/localStorageMock";
+import store from "../redux/store/store";
 
 const gettinUpLocalStorage = localStorageMock;
 
@@ -35,6 +35,7 @@ describe("Given an App component", () => {
           iat: 1654018896,
           logged: true,
         },
+        locations: [],
       };
 
       render(
