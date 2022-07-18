@@ -6,10 +6,10 @@ export interface LocationData {
   };
   geometry: {
     type: string;
-    coordinates: [number, number];
+    coordinates: number[];
   };
-  images: [string];
-  backupimages: [string];
+  images: string[];
+  backupimages: string[];
   userid: string;
   filter: string;
 }

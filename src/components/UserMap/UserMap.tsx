@@ -40,7 +40,7 @@ const UserMap = () => {
           <div className="info-popup">
             <h2>{location.properties.name}</h2>
             <p>{location.properties.description}</p>
-            <p>{location.images[0]}</p>
+            <img src={location.images[0]} alt="marker location" />
           </div>
         </Popup>
       </Marker>
