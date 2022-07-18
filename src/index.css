@@ -2,3 +2,26 @@ body {
   margin: 0;
   background-color: #fff;
 }
+
+.leaflet-container {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 90vh;
+  border: 2px solid #e50027;
+  border-radius: 12px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-popup {
+  margin: 30px 0 30px 0;
+  padding: 10px;
+  background-color: rgb(47, 47, 47);
+  border-radius: 10px;
+  color: white;
+}

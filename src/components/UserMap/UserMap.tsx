@@ -14,7 +14,7 @@ const UserMap = () => {
   }, [dispatch]);
 
   const markerIcon = new Icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconUrl: "../images/locationicon.png",
     iconSize: [35, 35],
   });
 

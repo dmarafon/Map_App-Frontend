@@ -12,13 +12,10 @@ export const loadLocationsThunk = () => async (dispatch: AppDispatch) => {
     });
 
     console.log(marks);
-    debugger;
     if (marks) {
       return dispatch(loadLocationActionCreator(marks));
     }
   } catch (error) {
-    debugger;
-
     console.log("Request doesn't work");
   }
 };
