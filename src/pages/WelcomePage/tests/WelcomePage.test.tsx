@@ -53,5 +53,19 @@ describe("Given a WelcomePage component", () => {
 
       expect(expectedLogoImage).toHaveLength(2);
     });
+
+    test("Then it should render the line of text 'to store your favorite place'", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <WelcomePage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const expectedText = screen.getByText(/to store your favorite places/i);
+
+      expect(expectedText).toBeInTheDocument();
+    });
   });
 });
