@@ -6,7 +6,7 @@ import WelcomePage from "../WelcomePage";
 
 describe("Given a WelcomePage component", () => {
   describe("When its invoked", () => {
-    test("Then it should render a textbox with the text 'EMAIL and 'PASSWORD', 'SIGN IN' to be in the document", () => {
+    test("Then it should render a textbox with the text 'EMAIL, 'PASSWORD' and 'SIGN IN'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -30,6 +30,28 @@ describe("Given a WelcomePage component", () => {
       expect(expectedTextPassword).toBeInTheDocument();
 
       expect(expectedTextSignIn).toBeInTheDocument();
+    });
+
+    test("Then it should render 2 images with the alternative text 'Trippy Logo' and 3 svg Icons for social media", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <WelcomePage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const expectedLogoImage = screen.getAllByAltText(/trippy logo/i);
+
+      const elementIconButton1 = screen.getByTestId("icon1");
+      const elementIconButton2 = screen.getByTestId("icon2");
+      const elementIconButton3 = screen.getByTestId("icon3");
+
+      expect(elementIconButton1).toBeInTheDocument();
+      expect(elementIconButton2).toBeInTheDocument();
+      expect(elementIconButton3).toBeInTheDocument();
+
+      expect(expectedLogoImage).toHaveLength(2);
     });
   });
 });
