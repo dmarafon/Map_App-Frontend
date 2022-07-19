@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "./components/hooks";
+import { useAppDispatch } from "./components/hooks";
 import MapPage from "./pages/MapPage/MapPage";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import {
@@ -22,7 +22,7 @@ const App = (): JSX.Element => {
     } else {
       dispatch(logoutActionCreator());
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <Routes>
