@@ -22,7 +22,6 @@ describe("Given an App component", () => {
     saveToStorage("");
 
     test("Then it should render without a token in its local storage and will call the logout action, and hence there will not be any user information in the store", () => {
-      const getStoreActionState = store.getState();
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -32,10 +31,11 @@ describe("Given an App component", () => {
       );
 
       const expectedTokenData = {
+        locations: [],
         ui: {
-          feedback: false,
-          loading: true,
           apiResponse: "",
+          feedback: false,
+          loading: false,
         },
         user: {
           city: "",
@@ -43,10 +43,11 @@ describe("Given an App component", () => {
           email: "",
           firstName: "",
           id: "",
-          logged: true,
+          logged: false,
         },
-        locations: [],
       };
+
+      const getStoreActionState = store.getState();
 
       expect(getStoreActionState).toStrictEqual(expectedTokenData);
 
