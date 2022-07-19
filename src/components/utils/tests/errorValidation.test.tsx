@@ -1,5 +1,6 @@
 import {
   errorLoginValidation,
+  errorMapValidation,
   errorRegistrationValidation,
 } from "../errorValidation";
 
@@ -82,5 +83,33 @@ describe("When its invoked passing an undefinied parameter", () => {
     const errorValidation = errorRegistrationValidation(expectedErrorSent);
 
     expect(errorValidation).toBe(expectedErrorString);
+  });
+});
+
+describe("Given a errorMapValidation function", () => {
+  describe("When its invoked passing an undefinied parameter to it", () => {
+    test("Then it should return the error message 'Unknown Error'", () => {
+      const expectedErrorString = "Unknown Error";
+      const expectedErrorSent = {
+        response: {},
+      };
+
+      const errorValidation = errorMapValidation(expectedErrorSent);
+
+      expect(errorValidation).toBe(expectedErrorString);
+    });
+  });
+
+  describe("When its invoked passing an object with the necessary properties", () => {
+    test("Then it should return the string message in the object 'Test Message'", () => {
+      const expectedErrorString = "Test Message";
+      const expectedErrorSent = {
+        response: { data: { message: "Test Message" } },
+      };
+
+      const errorValidation = errorMapValidation(expectedErrorSent);
+
+      expect(errorValidation).toBe(expectedErrorString);
+    });
   });
 });

@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "../../App";
-import { localStorageMock } from "../../mocks/localStorageMock";
-import store from "../../redux/store/store";
+import App from "../App";
+import { localStorageMock } from "../mocks/localStorageMock";
+import store from "../redux/store/store";
 
 const gettinUpLocalStorage = localStorageMock;
 
@@ -24,9 +24,9 @@ describe("Given an App component", () => {
     test("Then it should render with a token in its local storage and dispatch a login action that will decrypt the token with the user information and that data will be in the store", () => {
       const expectedTokenData = {
         ui: {
-          feedback: false,
-          loading: false,
           apiResponse: "",
+          feedback: false,
+          loading: true,
         },
         user: {
           firstName: "test",
@@ -35,6 +35,7 @@ describe("Given an App component", () => {
           iat: 1654018896,
           logged: true,
         },
+        location: [],
       };
 
       render(

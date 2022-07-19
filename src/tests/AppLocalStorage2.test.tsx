@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "../../App";
-import { localStorageMock } from "../../mocks/localStorageMock";
-import store from "../../redux/store/store";
+import App from "../App";
+import { localStorageMock } from "../mocks/localStorageMock";
+import store from "../redux/store/store";
 const gettinUpLocalStorage = localStorageMock;
 const saveToStorage = (value: string) => {
   window.localStorage.setItem("token", value);
@@ -22,7 +22,6 @@ describe("Given an App component", () => {
     saveToStorage("");
 
     test("Then it should render without a token in its local storage and will call the logout action, and hence there will not be any user information in the store", () => {
-      const getStoreActionState = store.getState();
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -32,10 +31,11 @@ describe("Given an App component", () => {
       );
 
       const expectedTokenData = {
+        location: [],
         ui: {
+          apiResponse: "",
           feedback: false,
           loading: false,
-          apiResponse: "",
         },
         user: {
           city: "",
@@ -46,6 +46,8 @@ describe("Given an App component", () => {
           logged: false,
         },
       };
+
+      const getStoreActionState = store.getState();
 
       expect(getStoreActionState).toStrictEqual(expectedTokenData);
 
