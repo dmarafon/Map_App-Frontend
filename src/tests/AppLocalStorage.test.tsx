@@ -25,7 +25,6 @@ describe("Given an App component", () => {
       const expectedTokenData = {
         ui: {
           apiResponse: "",
-
           feedback: false,
           loading: true,
         },
@@ -36,7 +35,7 @@ describe("Given an App component", () => {
           iat: 1654018896,
           logged: true,
         },
-        locations: [],
+        location: [],
       };
 
       render(

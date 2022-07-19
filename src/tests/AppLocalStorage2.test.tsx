@@ -31,7 +31,7 @@ describe("Given an App component", () => {
       );
 
       const expectedTokenData = {
-        locations: [],
+        location: [],
         ui: {
           apiResponse: "",
           feedback: false,

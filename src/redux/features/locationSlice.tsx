@@ -3,7 +3,7 @@ import { LocationData } from "../../types/locationInterface";
 
 const initialState: LocationData[] = [];
 
-const locationsSlice = createSlice({
+const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
@@ -14,6 +14,6 @@ const locationsSlice = createSlice({
 });
 
 export const { loadLocation: loadLocationActionCreator } =
-  locationsSlice.actions;
+  locationSlice.actions;
 
-export default locationsSlice.reducer;
+export default locationSlice.reducer;

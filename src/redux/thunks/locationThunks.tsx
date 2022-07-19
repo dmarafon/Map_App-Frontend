@@ -1,6 +1,6 @@
 import axios from "axios";
 import { errorMapValidation } from "../../components/utils/errorValidation";
-import { loadLocationActionCreator } from "../features/locationsSlice";
+import { loadLocationActionCreator } from "../features/locationSlice";
 import {
   apiResponseActionCreator,
   finishedLoadingActionCreator,

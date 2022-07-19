@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { loadLocationsThunk } from "../../redux/thunks/locationThunks";
 
 const UserMap = () => {
-  const locationState = useAppSelector((state) => state.locations);
+  const locationState = useAppSelector((state) => state.location);
 
   const dispatch = useAppDispatch();
 

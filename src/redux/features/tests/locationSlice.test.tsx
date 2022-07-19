@@ -1,4 +1,4 @@
-import locationsReducer, { loadLocationActionCreator } from "../locationsSlice";
+import locationReducer, { loadLocationActionCreator } from "../locationSlice";
 
 describe("Given a locationSlice reducer with a loadLocationActionCreator function", () => {
   describe("When it receives a user and a login action", () => {
@@ -96,7 +96,7 @@ describe("Given a locationSlice reducer with a loadLocationActionCreator functio
         },
       ];
       const action = loadLocationActionCreator(initialMarkers);
-      const loadedMarkers = locationsReducer(initialMarkers, action);
+      const loadedMarkers = locationReducer(initialMarkers, action);
 
       expect(loadedMarkers).toEqual(expectedMarkers);
     });
