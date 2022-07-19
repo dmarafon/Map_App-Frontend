@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { useEffect } from "react";
 import { loadLocationsThunk } from "../../redux/thunks/locationThunks";
 
-const UserMap = () => {
+const UserMap = (): JSX.Element => {
   const locationState = useAppSelector((state) => state.location);
 
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ const UserMap = () => {
           <div className="info-popup">
             <h2>{location.properties.name}</h2>
             <p>{location.properties.description}</p>
-            <img src={location.images[0]} alt="marker location" />
+            <img src={location.images[0]} alt="marker location" width={150} />
           </div>
         </Popup>
       </Marker>
