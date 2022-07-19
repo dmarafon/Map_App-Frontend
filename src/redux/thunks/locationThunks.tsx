@@ -23,6 +23,9 @@ export const loadLocationsThunk = () => async (dispatch: AppDispatch) => {
     if (marks) {
       dispatch(finishedLoadingActionCreator());
       return dispatch(loadLocationActionCreator(marks));
+    } else {
+      dispatch(finishedLoadingActionCreator());
+      dispatch(apiResponseActionCreator("No Markers"));
     }
   } catch (error: any) {
     const errorResponse = errorMapValidation(error);
