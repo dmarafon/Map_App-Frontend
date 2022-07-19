@@ -13,10 +13,9 @@ import { LoginInformation } from "./types/userInterface";
 const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const token = useAppSelector((store) => store.user.logged);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       const userInfo: LoginInformation = jwtDecode(token);
       dispatch(loginActionCreator(userInfo));
