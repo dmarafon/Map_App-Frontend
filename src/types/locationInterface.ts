@@ -12,4 +12,5 @@ export interface LocationData {
   backupimages: string[];
   userid: string;
   filter: string;
+  id: string;
 }

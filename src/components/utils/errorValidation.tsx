@@ -1,3 +1,6 @@
+import { apiResponseActionCreator } from "../../redux/features/uiSlice";
+import { AppDispatch } from "../../redux/store/store";
+
 export const errorLoginValidation = (error: any) => {
   if (error?.response?.data?.message.startsWith("Email or pa")) {
     return "Email Invalid";
@@ -24,3 +27,11 @@ export const errorMapValidation = (error: any) => {
   }
   return error.response.data.message.substring(0, 15);
 };
+
+export const checkStatusCode =
+  (status: number, markerId: string) => (dispatch: AppDispatch) => {
+    if (status === 200) {
+    } else {
+      dispatch(apiResponseActionCreator("Marker was not Deleted"));
+    }
+  };

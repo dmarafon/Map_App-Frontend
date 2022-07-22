@@ -158,7 +158,7 @@ const RegisterLoginForm = (): JSX.Element => {
   return (
     <RegisterLoginFormStyled>
       {openingForm === "loginForm" ? (
-        <div className="login__form--container">
+        <div id="heading" className="login__form--container">
           {apiMessage === "Incorrect Email" && (
             <ModalText
               handleClose={submitClosingModalResponse}

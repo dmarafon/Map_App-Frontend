@@ -1,7 +1,7 @@
 import { MapContainer } from "react-leaflet";
 import UserMap from "../../components/UserMap/UserMap";
 
-const MapPage = () => {
+const MapPage = (): JSX.Element => {
   return (
     <div className="main">
       <h1>Trippy</h1>
