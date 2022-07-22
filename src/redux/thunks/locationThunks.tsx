@@ -1,5 +1,8 @@
 import axios from "axios";
-import { errorMapValidation } from "../../components/utils/errorValidation";
+import {
+  errorLoginValidation,
+  errorMapValidation,
+} from "../../components/utils/errorValidation";
 import { loadLocationActionCreator } from "../features/locationSlice";
 import {
   apiResponseActionCreator,
@@ -33,3 +36,24 @@ export const loadLocationsThunk = () => async (dispatch: AppDispatch) => {
     dispatch(apiResponseActionCreator(errorResponse));
   }
 };
+
+export const deleteLocationThunk =
+  (id: string) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(loadingActionCreator());
+
+      const url: string = `${process.env.REACT_APP_API_URL}locations/delete/${id}`;
+
+      const { status } = await axios.delete(url, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+
+      dispatch(finishedLoadingActionCreator());
+
+      // checkStatusCode(status, id);
+    } catch (error: any) {
+      const errorResponse = errorLoginValidation(error);
+      dispatch(finishedLoadingActionCreator());
+      dispatch(apiResponseActionCreator(errorResponse));
+    }
+  };
