@@ -2,9 +2,15 @@ import { useMapEvents } from "react-leaflet";
 import L, { Icon } from "leaflet";
 import ReactDOMServer from "react-dom/server";
 import { useRef } from "react";
-import { cleanApiResponseActionCreator } from "../../redux/features/uiSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { deleteLocationThunk } from "../../redux/thunks/locationThunks";
+import {
+  apiResponseActionCreator,
+  cleanApiResponseActionCreator,
+} from "../../redux/features/uiSlice";
+import { useAppDispatch } from "../hooks";
+import {
+  deleteLocationThunk,
+  loadLocationsThunk,
+} from "../../redux/thunks/locationThunks";
 
 const UserMarker = ({
   lat,
@@ -13,6 +19,7 @@ const UserMarker = ({
   description,
   image,
   id,
+  setCoordinates,
 }: {
   lat: number;
   lng: number;
@@ -20,9 +27,9 @@ const UserMarker = ({
   description: string;
   id: string;
   image: string;
+  setCoordinates: any;
 }) => {
   const dispatch = useAppDispatch();
-  const userId = useAppSelector((store) => store.user.id);
 
   const icon = new Icon({
     iconUrl: "../images/locationicon.png",
@@ -33,6 +40,8 @@ const UserMarker = ({
     click: (event) => {
       const { lat, lng } = event.latlng;
       L.marker([lat, lng], { icon }).addTo(map);
+      setCoordinates(lat.toString() + lng.toString());
+      dispatch(apiResponseActionCreator("Add Mark"));
     },
   });
 
@@ -40,11 +49,12 @@ const UserMarker = ({
     event.preventDefault();
 
     await dispatch(deleteLocationThunk(id));
-    console.log("deleted");
-    dispatch(cleanApiResponseActionCreator());
-    return userMarker.removeFrom(map);
 
-    // dispatch(loadUserArtworks(userId));
+    dispatch(cleanApiResponseActionCreator());
+
+    userMarker.remove();
+
+    dispatch(loadLocationsThunk());
   };
 
   const addClickToButton = () => {
