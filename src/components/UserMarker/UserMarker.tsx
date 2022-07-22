@@ -67,12 +67,6 @@ const UserMarker = ({
 
   const userMarker = L.marker([lat, lng], { icon });
 
-  // map.eachLayer((layer) => {
-  //   if (layer instanceof L.Marker) {
-  //     console.log(layer?._leaflet_id);
-  //   }
-  // });
-
   const storeLatitudeAndLongitude = `${lat}+${lng}`;
   const coordinatesUsed = useRef<string[]>([]);
 
