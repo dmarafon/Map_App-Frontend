@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  checkStatusCode,
   errorLoginValidation,
   errorMapValidation,
 } from "../../components/utils/errorValidation";
@@ -50,7 +51,7 @@ export const deleteLocationThunk =
 
       dispatch(finishedLoadingActionCreator());
 
-      // checkStatusCode(status, id);
+      checkStatusCode(status, id);
     } catch (error: any) {
       const errorResponse = errorLoginValidation(error);
       dispatch(finishedLoadingActionCreator());
